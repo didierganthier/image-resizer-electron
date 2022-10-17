@@ -1,0 +1,25 @@
+{
+  "name": "image-resizer-electron",
+  "productName": "Image Resizer",
+  "version": "1.0.0",
+  "description": "App to resize images",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/didierganthier/image-resizer-electron.git"
+  },
+  "author": "Didier Ganthier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/didierganthier/image-resizer-electron/issues"
+  },
+  "homepage": "https://github.com/didierganthier/image-resizer-electron#readme",
+  "dependencies": {
+    "electron": "^21.1.1",
+    "resize-img": "^2.0.0",
+    "toastify-js": "^1.12.0"
+  }
+}
