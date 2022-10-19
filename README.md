@@ -99,31 +99,30 @@ console.log(electron)
 // spawn Electron
 const child = proc.spawn(electron)
 ```
+## Authors
 
-### Mirrors
+👤 *Author1*
 
-* [China](https://npmmirror.com/mirrors/electron/)
+- GitHub: [@didierganthier](https://github.com/didierganthier)
+- Twitter: [@didierganthier_](https://twitter.com/didierganthier_)
+- LinkedIn: [didierganthier](https://linkedin.com/in/didierganthier)
 
-See the [Advanced Installation Instructions](https://www.electronjs.org/docs/latest/tutorial/installation#mirror) to learn how to use a custom mirror.
+## 🤝 Contributing
 
-## Documentation translations
+Contributions, issues, and feature requests are welcome!
 
-We crowdsource translations for our documentation via [Crowdin](https://crowdin.com/project/electron).
-We currently accept translations for Chinese (Simplified), French, German, Japanese, Portuguese,
-Russian, and Spanish.
+Feel free to check the [issues page](../../issues/).
 
-## Contributing
+## Show your support
 
-If you are interested in reporting/fixing issues and contributing directly to the code base, please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
+Give a ⭐️ if you like this project!
 
-## Community
+## Acknowledgments
 
-Info on reporting bugs, getting help, finding third-party tools and sample apps,
-and more can be found on the [Community page](https://www.electronjs.org/community).
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
 
-## License
+## 📝 License
 
-[MIT](https://github.com/electron/electron/blob/main/LICENSE)
-
-When using Electron logos, make sure to follow [OpenJS Foundation Trademark Policy](https://openjsf.org/wp-content/uploads/sites/84/2021/01/OpenJS-Foundation-Trademark-Policy-2021-01-12.docx.pdf).
-
+This project is [MIT](./LICENSE) licensed.
