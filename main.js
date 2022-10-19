@@ -1,14 +1,30 @@
 const path = require('path');
 const { app, BrowserWindow } = require('electron')
 
-function createWindow() {
-   const mainWindow = new BrowserWindow({
-        title: 'Image Resizer',
-        width: 500,
-        height: 600,
-   });
+const isMac = process.platform === 'darwin';
 
-    mainWindow.loadFile(path.join(__dirname, './renderer/index.html'));
+function createWindow() {
+     const mainWindow = new BrowserWindow({
+          title: 'Image Resizer',
+          width: 500,
+          height: 600,
+     });
+
+     mainWindow.loadFile(path.join(__dirname, './renderer/index.html'));
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+     createWindow()
+   
+     app.on('activate', () => {
+       if (BrowserWindow.getAllWindows().length === 0) {
+         createWindow()
+       }
+     })
+   })
+
+app.on('window-all-closed', () => {
+     if (!isMac) {
+          app.quit();
+     }
+});
