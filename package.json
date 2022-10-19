@@ -5,7 +5,8 @@
   "description": "App to resize images",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dev": "electronmon ."
   },
   "repository": {
     "type": "git",
