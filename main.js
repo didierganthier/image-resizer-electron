@@ -1,5 +1,5 @@
 const path = require('path');
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 
 const isDev = process.env.NODE_ENV !== 'development';
 const isMac = process.platform === 'darwin';
@@ -21,12 +21,37 @@ function createWindow() {
 app.whenReady().then(() => {
      createWindow()
 
+     const mainMenu = Menu.buildFromTemplate(menu);
+     Menu.setApplicationMenu(mainMenu);
+
      app.on('activate', () => {
           if (BrowserWindow.getAllWindows().length === 0) {
                createWindow()
           }
      })
 })
+
+const menu = [
+     ...(isMac ? [{
+          label: app.name,
+          submenu: [
+               {
+                    label: 'About',
+               }
+          ]
+     }] : []),
+     {
+          role: 'fileMenu'
+     },
+     ...(!isMac ? [{
+          label: 'Help',
+          submenu: [
+               {
+                    label: 'About',
+               }
+          ]
+     }] : []),
+]
 
 app.on('window-all-closed', () => {
      if (!isMac) {
