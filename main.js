@@ -32,16 +32,25 @@ app.whenReady().then(() => {
 })
 
 const menu = [
-     {
-          label: 'File',
+     ...(isMac ? [{
+          label: app.name,
           submenu: [
                {
-                    label: 'Quit',
-                    accelerator: 'CmdOrCtrl+W',
-                    click: () => app.quit()
-               },
-          ] 
-     }
+                    label: 'About',
+               }
+          ]
+     }] : []),
+     {
+          role: 'fileMenu'
+     },
+     ...(!isMac ? [{
+          label: 'Help',
+          submenu: [
+               {
+                    label: 'About',
+               }
+          ]
+     }] : []),
 ]
 
 app.on('window-all-closed', () => {
