@@ -28,6 +28,19 @@ app.whenReady().then(() => {
      })
 })
 
+const menu = [
+     {
+          label: 'File',
+          submenu: [
+               {
+                    label: 'Quit',
+                    accelerator: 'CmdOrCtrl+W',
+                    click: () => app.quit()
+               },
+          ] 
+     }
+]
+
 app.on('window-all-closed', () => {
      if (!isMac) {
           app.quit();
