@@ -9,7 +9,7 @@ const loadImage =  (e) => {
     const file = e.target.files[0];
 
     if(!isFileImage(file)) {
-        alert('Please select an image');
+        alertError('Please select an image');
         return;
     }
 
@@ -25,19 +25,56 @@ const loadImage =  (e) => {
     form.style.display = 'block';
     filename.innerText = file.name;
     outputPath.innerText = path.join(os.homedir(), 'imageresizer');
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onload = () => {
-    //     const img = document.createElement('img');
-    //     img.src = reader.result;
-    //     document.querySelector('#img-container').appendChild(img);
-    // }
 }
+
+const sendImage = (e) => {
+    e.preventDefault();
+
+    const width = widthInput.value;
+    const height = heightInput.value;
+
+    if(!img.files[0]) {
+        alertError('Please select an image');
+        return;
+    }
+
+    if(!width || !height) {
+        alertError('Please enter width and height');
+        return;
+    }
+}
+
 
 const isFileImage = (file) => {
     const acceptedImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
     return file && acceptedImageTypes.includes(file['type']);
 }
 
+const alertSuccess = (message) => {
+    Toastify.toast({
+        text: message,
+        duration: 5000,
+        close: false,
+        style: {
+            background: 'green',
+            color: 'white',
+            textAlign: 'center',
+        },
+    });
+}
+
+const alertError = (message) => {
+    Toastify.toast({
+        text: message,
+        duration: 5000,
+        close: false,
+        style: {
+            background: 'red',
+            color: 'white',
+            textAlign: 'center',
+        },
+    })
+}
 
 img.addEventListener('change', loadImage);
+form.addEventListener('submit', sendImage);
