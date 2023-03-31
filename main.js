@@ -1,6 +1,8 @@
 const path = require('path');
 const os = require('os');
-const { app, BrowserWindow, Menu } = require('electron')
+const fs = require('fs');
+const resizeImg = require('resize-img');
+const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron')
 
 const isDev = process.env.NODE_ENV !== 'development';
 const isMac = process.platform === 'darwin';
@@ -73,6 +75,35 @@ const menu = [
           ]
      }] : []),
 ]
+
+ipcMain.on('image:resize', (e, options) => {
+     options.dest = path.join(os.homedir(), 'imageresizer');
+     resizeImage(options);
+})
+
+const resizeImage = async ({ imgPath, width, height, dest }) => {
+     try {
+          const newPath = await resizeImage(fs.readFileSync(imgPath), {
+               width,
+               height
+          });
+
+          const fileName = path.basename(imgPath);
+
+          if(!fs.existsSync(dest)) {
+               fs.mkdirSync(dest);
+          }
+
+          fs.writeFileSync(path.join(dest, fileName), newPath);
+
+          mainWindow.webContents.send('image:done');
+
+          shell.openPath(dest);
+
+     } catch (err) {
+          console.log(err);
+     }
+}
 
 app.on('window-all-closed', () => {
      if (!isMac) {
